@@ -1,0 +1,13 @@
+{
+    "extends": "@tsconfig/node16/tsconfig.json",
+    "compilerOptions": {
+        "module": "es2022",
+
+        "rootDir": ".",
+        "outDir": "dist",
+
+        "declaration": true,
+        "declarationMap": true
+    },
+    "include": ["src/"]
+}
