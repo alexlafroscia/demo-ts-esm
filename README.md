@@ -4,7 +4,7 @@ This repository contains a simple demonstration of using TypeScript with the nat
 
 ## Project Setup
 
-This project is set up to use Volta and Yarn 3, but those are not strictly necessary; you need
+This project is set up to use [Volta](https://volta.sh) and [Yarn 3](https://yarnpkg.com), but those are not strictly necessary; you need
 
 - Node v16.15+
 - Any version of Yarn
@@ -25,10 +25,12 @@ yarn build
   - The `src/index.ts` file output as the main export from the package
   - The `src/helper.ts` file as a relative module from the root of the package
   - The type definitions using the `"types"` condition
+- [Vitest](https://vitest.dev) is smart enough to understand that the import of `./index.js` actually means the `./index.ts` file it is adjacent to
 
 ### Output
 
 - `dist/src/bin.js` is a Node script that makes use of Native ESM features, including ESM imports and top-level `await`
+- `dist/src/bin.js` can specify an import is from the Node standard library with the `node:` prefix
 
 ## Running the Code
 
