@@ -34,13 +34,17 @@ yarn build
 
 ## Running the Code
 
+### `bin` Executable
+
 The `bin` file can be executed through `yarn node` like so:
 
 ```sh
 yarn node ./dist/src/bin.js 1 2
 ```
 
-The exposed module can be played with using by first launching the Node repl using `yarn node`, and then importing the module as follows:
+### Module Imports
+
+The exposed modules can be imported by first launching the Node repl using `yarn node`, and then importing it as follows:
 
 ```js
 const { add } = await import("demo-ts-esm");
