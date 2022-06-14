@@ -59,30 +59,3 @@ const { add } = await import("demo-ts-esm/helpers");
 
 const result = await add(1, 2);
 ```
-
-## Gotchas
-
-There are some things you might want to be aware of when working with native ESM and TypeScript:
-
-### Missing `.js` Extension in Imports
-
-It can be pretty easy to accidentally leave off the `.js` extension from the imports within your package, especially if you are migrating an existing project that does not include the extension in your import specifier. TypeScript itself will not complain about the missing file extension, nor will common test runners like Vitest, which work fine with no file extension being provided.
-
-It's not until you actually try to execute your package's code by consuming the TypeScript output as ESM that Node will complain that your imports are missing the requisite `.js` file extension.
-
-To demonstrate this problem within this repo, modify the `src/index.ts` file like so:
-
-```diff
-- export { add } from "./helpers.js";
-+ export { add } from "./helpers";
-```
-
-Compiling the code (`yarn build`) and running the tests (`yarn test`) will both complete without complaint! However, actually trying to import the package as ESM will fail. Try the following in the Node repl (`yarn node`) after performing a build (`yarn build`):
-
-```js
-import("demo-ts-esm");
-```
-
-Results in an error:
-
-> Error [ERR_MODULE_NOT_FOUND]: Cannot find module '$PATH_TO_PARENT_DIR/demo-ts-esm/dist/src/helpers' imported from $PATH_TO_PARENT_DIR/demo-ts-esm/dist/src/index.js
